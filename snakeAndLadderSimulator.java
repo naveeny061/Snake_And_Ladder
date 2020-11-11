@@ -17,6 +17,7 @@ public class snakeAndLadderSimulator {
 	}
 
 	// UC3 Playing the game by making choice
+	// UC5 Refactor to check position less than 100 
 	int play(int position, int dice) {
 		Random random = new Random();
 		int choice = random.nextInt(3);
@@ -26,6 +27,8 @@ public class snakeAndLadderSimulator {
 			break;
 		case 1:
 			position += dice;
+			if ( position>100 )
+				position-=dice;
 			System.out.println("Ladder ---- position = " + position);
 			break;
 		case 2:
