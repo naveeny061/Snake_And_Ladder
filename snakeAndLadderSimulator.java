@@ -1,6 +1,8 @@
 import java.util.Random;
 
 public class snakeAndLadderSimulator {
+	int count = 0;
+
 	// UC1 starting with positio 0
 	int start() {
 		int start = 0;
@@ -10,6 +12,7 @@ public class snakeAndLadderSimulator {
 
 	// UC2 roll the dice
 	int rollDice() {
+		count++;
 		Random random = new Random();
 		int dice = random.nextInt(6) + 1;
 		System.out.println("Dice=" + dice);
@@ -17,7 +20,7 @@ public class snakeAndLadderSimulator {
 	}
 
 	// UC3 Playing the game by making choice
-	// UC5 Refactor to check position less than 100 
+	// UC5 Refactor to check position less than 100
 	int play(int position, int dice) {
 		Random random = new Random();
 		int choice = random.nextInt(3);
@@ -27,8 +30,8 @@ public class snakeAndLadderSimulator {
 			break;
 		case 1:
 			position += dice;
-			if ( position>100 )
-				position-=dice;
+			if (position > 100)
+				position -= dice;
 			System.out.println("Ladder ---- position = " + position);
 			break;
 		case 2:
@@ -55,6 +58,11 @@ public class snakeAndLadderSimulator {
 		}
 	}
 
+	// UC6 number of dice roll for winning
+	void dice() {
+		System.out.println("Total Dice Roll=" + count);
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to Snake & Ladder Simulator");
 		snakeAndLadderSimulator game = new snakeAndLadderSimulator();
@@ -63,6 +71,7 @@ public class snakeAndLadderSimulator {
 		int dice = game.rollDice();
 		position = game.play(position, dice);
 		game.Check(position);
+		game.dice();
 	}
 
 }
