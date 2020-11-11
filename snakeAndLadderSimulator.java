@@ -17,7 +17,7 @@ public class snakeAndLadderSimulator {
 	}
 
 	// UC3 Playing the game by making choice
-	void play(int position, int dice) {
+	int play(int position, int dice) {
 		Random random = new Random();
 		int choice = random.nextInt(3);
 		switch (choice) {
@@ -33,6 +33,23 @@ public class snakeAndLadderSimulator {
 			System.out.println("Snake ---- position = " + position);
 
 		}
+		return position;
+	}
+
+	// UC4 Repeating till winner position
+	void Check(int position) {
+		while (true) {
+			if (position < 0) {
+				position = 0;
+				System.out.println("position=" + position);
+			}
+			if (position == 100) {
+				System.out.println("winner");
+				return;
+			}
+			int dice = rollDice();
+			position = play(position, dice);
+		}
 	}
 
 	public static void main(String[] args) {
@@ -41,10 +58,8 @@ public class snakeAndLadderSimulator {
 
 		int position = game.start();
 		int dice = game.rollDice();
-		game.play(position, dice);
-
+		position = game.play(position, dice);
+		game.Check(position);
 	}
 
 }
-
-
